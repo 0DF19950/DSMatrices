@@ -19,3 +19,12 @@ function generate_doubly_stochastic(N, X)
     
     return TM
 end
+
+# Example usage: Generate a doubly stochastic matrix with N=4 and X=1000 iterations
+N = 4
+X = 1000
+dsm= generate_doubly_stochastic(N, X)
+plot(real(eigvals(dsm)), imag(eigvals(dsm)), seriestype = :shape, label = "", fillalpha = 0.5)
+xlabel!("Real part")
+ylabel!("Imaginary part")
+title!("Eigenvalues of Doubly Stochastic Matrices")
