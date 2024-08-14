@@ -48,3 +48,30 @@ xlabel!("Real part")
 ylabel!("Imaginary part")
 title!("Eigenvalues of Doubly Stochastic Matrices")
 savefig("matlabmethod2dim.png")
+
+
+# build an animated gif by pushing new points to the plot, saving every 10th frame
+# Define the number of matrices you want to generate
+num_matrices = 20
+
+# Initialize an empty plot
+p = plot()
+
+# Loop through each matrix and plot its eigenvalues
+@gif for i in 1:num_matrices
+    A = generate_doubly_stochastic(N, X)
+    # eigenvals = eigvals(A)
+    plot(real(eigvals(A)), imag(eigvals(A)), seriestype = :shape, label = "", fillalpha = 0.5)
+    xlabel!("Real part")
+    ylabel!("Imaginary part")
+    title!("Eigenvalues of Doubly Stochastic Matrices")
+    # scatter!(real(eigenvals), imag(eigenvals), label="Matrix $i", legend=:topleft)
+    # plot!(real(eigenvals), imag(eigenvals), label="", color=:black, alpha=0.5)
+end fps = 1 
+
+# Display the plot
+p
+
+
+
+
