@@ -28,3 +28,23 @@ plot(real(eigvals(dsm)), imag(eigvals(dsm)), seriestype = :shape, label = "", fi
 xlabel!("Real part")
 ylabel!("Imaginary part")
 title!("Eigenvalues of Doubly Stochastic Matrices")
+
+
+num_matrices = 10000
+eigenvalues = zeros( Complex{Float64}, 4, num_matrices)
+
+for i in 1:num_matrices
+    A = generate_doubly_stochastic(N, X)
+    eigenvalues[:, i] = eigvals(A)
+end
+
+# Plot the eigenvalues
+scatter(real.(eigenvalues[1, :]), imag.(eigenvalues[1, :]), label="Eigenvalue 1", legend=:topleft)
+scatter!(real.(eigenvalues[2, :]), imag.(eigenvalues[2, :]), label="Eigenvalue 2")
+scatter!(real.(eigenvalues[3, :]), imag.(eigenvalues[3, :]), label="Eigenvalue 3")
+scatter!(real.(eigenvalues[4, :]), imag.(eigenvalues[4, :]), label="Eigenvalue 4")
+scatter!(real.(eigenvalues[5, :]), imag.(eigenvalues[5, :]), label="Eigenvalue 5")
+xlabel!("Real part")
+ylabel!("Imaginary part")
+title!("Eigenvalues of Doubly Stochastic Matrices")
+savefig("matlabmethod2dim.png")
