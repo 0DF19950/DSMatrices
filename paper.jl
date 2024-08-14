@@ -17,3 +17,18 @@ function system(x,y,z)
         return "System is not satisfied"
     end
 end
+
+not_satisfied_matrices = []
+
+for i in 1:1000000
+    N = rand(distr)
+    x, y, z, t = eigvals((N+N')/2) # Assuming the fourth value is not needed, adjust as necessary
+    if system(x, y, z)=="System is not satisfied"
+        push!(not_satisfied, (N+N')/2)
+    end
+    # if z + ((x^2 + x*y + y + 1) / (1 + x + 2*y))<0
+    #     println("x=",x,"y=",y, "z=",z,"",z + ((x^2 + x*y + y + 1) / (1 + x + 2*y)))
+    # end    
+end
+
+not_satisfied_matrices
